@@ -82,7 +82,7 @@ image::images/openFromProperties.png[]
 Change the `Uri` of the node to
 
 ```
-mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;subscribeTopicNames=iotdemo/#/#&amp;userName=admin&amp;password=change12_me
+mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&subscribeTopicNames=iotdemo/#/#&userName=admin&password=change12_me&reconnectBackOffMultiplier=1
 ```
 
 image::images/setMQTTReceiver.png[]
@@ -98,6 +98,7 @@ Let's analyze this long string:
  and has two more parts, which we subscribe to via wildcards
  * *userName=admin&amp;password=change12_me* defines the username and password which
  this receiver uses to authenticate to the MQTT Broker
+ * *&amp;reconnectBackOffMultiplier=1* defines the Exponential backoff be used between reconnect attempts. Set to 1 to disable exponential backoff.
 
 ==== Changing the CSV message to a Java Object
 In this step we will introduce the capabilities needed to
@@ -105,11 +106,11 @@ In this step we will introduce the capabilities needed to
  1. extract the data from the MQTT Topic and the payload
  2. build an XML structure based the data from the MQTT Topic and the payload
 
-Start by selecting the connection between the MQTT and the second node and removing it.
+Start by opening the *Palette* view and drag the *Bean* component onto the `camel-context.xml`
 
-image::images/deleteFromToConnection.png[]
+image::images/dragBeanComponent.png[]
 
-Now you can add a `Bean` to the MQTT Node by selecting it and adding the component `Bean`.
+Your `camel-context.xml` should now look as in
 
 image:images/addBean.png[]
 
@@ -117,7 +118,8 @@ In the properties of the newly created `Bean`, please define the following value
 
  * *Bean Type* to `com.redhat.demo.routingService.MyHelper`
  * *Method* to `enhanceMessage`
- * *Bean Name* to `myHelper`
+ * *ID* to `myHelper`
+ * *Ref* to `myHelper`
 
 image:images/defineBean.png[]
 
@@ -137,13 +139,33 @@ If you want to see the Java code for this object, open the following file:
 
 image:images/openJavaBean.png[]
 
+==== Connecting Bean
+For the Bean to be used, we need to wire it into our flow.
+
+Select the arrow symbol between the *mqtt* node and the *direct:to* node
+
+image:images/beforeWiringBean.png[]
+
+drag the tip of the arrow to hover over the *bean* and release it there. The result
+will look like
+
+image:images/afterWiringBean.png[]
+
+Changing this resulted in the message to be received via MQTT and then passed
+to our bean.
+
 ==== Transforming the Java Object to XML
 Now that we have all our relevant data transformed into a Java object, we can
 use JBoss Fuse to transform it.
 
-To do so, select the `bean myHelper` and add the `Unmarshal` functionality.
+To do so, select the `Unmarshal` component from the `Palette` view and drag it
+onto `camel-context.xml`
 
-image:images/addMarshall.png[]
+image:images/beforeUnmarshallDrag.png[]
+
+the result will look like
+
+image:images/afterUnmarshallDrag.png[]
 
 In the properties pane of the newly created Node, please change the `Ref` property to `bindyDataFormat`.
 
@@ -151,16 +173,13 @@ image:images/setMarshall.png[]
 
 This tells JBoss Fuse which functionality to use to transform the Java Object to XML.
 
+*This method is deprecated, we will update the instructions in the next version*
+
+Now you need to wire the created components to the correct flow sequence, as shown in
+
+image:images/wiringDone.png[]
+
 ==== Adding the final send to the flow
-All that is left to do is to change our logic to send the created XML to our AMQP
-Messagequeue. To do this, select the `unmarshal` Node and drag the small black arrow to
-the `direct:to` node.
-
-image:images/connectMarshallToEnd.png[]
-
-This will take care that the XML message will be transported from the `unmarshall` step
-to the `direct:to` node, so you will not have to worry about the flow of the message itself.
-
 Last thing to do is to configure the sending node, to do this please select
 the `direct:to` node and change the property `Uri` to `activemqGateway:queue:message.to.rules`  as shown in the image below.
 
@@ -179,12 +198,13 @@ image:images/changeView.png[]
 You will be presented with the XML representation of our route, which includes
 some preparation and definition steps and at the end, our route
 
- <route id="messagesFromSensor">
-    <from uri="mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;subscribeTopicNames=iotdemo/#/#&amp;userName=admin&amp;password=change12_me"/>
-    <bean ref="myHelper" method="enhanceMessage" beanType="com.redhat.demo.routingService.MyHelper"/>
-    <unmarshal ref="bindyDataFormat"/>
-    <to uri="activemqGateway:queue:message.to.rules"/>
- </route>
+  <route id="messagesFromSensor">
+      <from id="_from1" uri="mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;amp;subscribeTopicNames=iotdemo/#/#&amp;amp;userName=admin&amp;amp;password=change12_me&amp;amp;reconnectBackOffMultiplier=1"/>
+      <bean beanType="com.redhat.demo.routingService.MyHelper"
+          id="myHelper" method="enhanceMessage"/>
+      <unmarshal id="_unmarshal1" ref="bindyDataFormat"/>
+      <to id="_to1" uri="activemqGateway:queue:message.to.rules"/>
+  </route>
 
 We will now have to add one more transformation, which will transform the message
 from it's current XML-Document format into a String. This will make later processing
@@ -192,14 +212,14 @@ easier.
 
 Please locate the following two lines
 
- <unmarshal ref="bindyDataFormat"/>
- <to uri="activemqGateway:queue:message.to.rules"/>
+ <unmarshal id="_unmarshal1" ref="bindyDataFormat"/>
+ <to id="_to1" uri="activemqGateway:queue:message.to.rules"/>
 
 now add the transformation inbetween those
 
- <unmarshal ref="bindyDataFormat"/>
+ <unmarshal id="_unmarshal1" ref="bindyDataFormat"/>
  <convertBodyTo type="java.lang.String"/>
- <to uri="activemqGateway:queue:message.to.rules"/>
+ <to id="_to1" uri="activemqGateway:queue:message.to.rules"/>
 
 Please do not forget to save your changes, as this will complete this exercise.
 
@@ -294,3 +314,5 @@ image:images/messageContent.png[]
 
 
 == Flow 2 - Filter and Forward to Backend
+
+tbd

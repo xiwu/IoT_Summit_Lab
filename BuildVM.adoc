@@ -1,4 +1,4 @@
-= IoT Summit Lab 2016 - Building a VM
+vo D= IoT Summit Lab 2016 - Building a VM
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
@@ -109,27 +109,34 @@ image:images/download_fuse.png[]
 After downloading it, please place the file 'jboss-fuse-full-6.2.1.redhat-084.zip'
 into the home-directory of your user. In my case the command required is
 
- [demo-user@iotlab ~]$ mv Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user
+ [demo-user@iotlab ~]$ mv Downloads/jboss-fuse-karaf-6.3.0.redhat-187.zip /home/demo-user
 
 === Red Hat JBoss Developer Studio
 Red Hat JBoss Developer Studio ( JBDS ) in the Eclipse based tooling
 for all JBoss products. It's capabilities can be installed onto an
 existing Eclipse or already bundled.
 
-For this setup, we will download JBDS from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=jbossdeveloperstudio&version=8.1.0[Red Hat Customer Portal],
-but please make sure to download the V8.1
+For this setup, we will download JBDS with the required Integration Stack from http://tools.jboss.org/downloads/devstudio_is/neon/10.0.0.GA.html[tools.jboss.org],
+but please make sure to download the V10
 
 image:images/download_jbds.png[]
 
-Once the download completed, you can run the installer via
 
- [demo-user@iotlab ~]$ java -jar Downloads/jboss-devstudio-8.1.0.GA-installer-standalone.jar
+Once the download completed, you can run the installer for JBDS via.
 
-For simplicity, accept all defaults and let the installer add an icon onto the desktop
+ [demo-user@iotlab ~]$ java -jar Downloads/devstudio-integration-stack-10.0.0.GA-standalone-installer.jar
+
+For simplicity, accept all defaults. When arriving at "Step 6 of 10" for the
+selection of additional features, please select to also install the "JBoss Fuse Development"
+
+image:images/fuse_tools.png[]
+
+Finally, let the installer add an icon onto the desktop
 
 image:images/install_jbds.png[]
 
-Run JBDS after the installation completed
+If you want to take a first look at JBDS, let the installer start it, once
+the installation completed
 
 image:images/start_jbds.png[]
 
@@ -137,18 +144,7 @@ You can, again, accept the defaults for the proposed Eclipse 'workspace'.
 
 It is up to you, if you want to let Red Hat receive usage statistics or not.
 
-image:images/start_workspace.png[]
-
-Once JBDS has fully started and the 'workspace' is shown, you will have to
-switch to the panel to install additional software into JBDS
-
-image:images/jbds_software_updates.png[]
-
-Select *JBoss Fuse Development* for installation.
-
-image:images/jbds_install_tooling.png[]
-
-After installing the Tooling and restarting JBDS, you can import the source
+After the successful installation of JBDS, you can import the source
 projects for the labs, to do so, perform the following steps
 
  * Open the 'Import' wizard of JBDS
@@ -172,6 +168,11 @@ For the MS Excel based decision table, we need some kind of spreadsheet
 application. We have chosen to go for *LibreOffice* but any other application
 capable of reading and writing MS Excel is OK.
 
+Depending on your Linux distribution and prefered choice, there are multiple ways
+to install *LibreOffice*
+
+=== Manual Installation
+
 To install *LibreOffice* please perform the following commands
 
  [demo-user@iotlab IoT_Summit_Lab]$ cd
@@ -180,5 +181,13 @@ To install *LibreOffice* please perform the following commands
  [demo-user@iotlab ~]$ cd LibreOffice_5.1.3.2_Linux_x86-64_rpm/RPMS/
  [demo-user@iotlab RPMS]$ sudo yum localinstall *.rpm
 
+=== Package Manager based Installation
+Subscribe to channel rhel-x86_64-server-optional-6 using command below
+
+  [demo-user@iotlab ~]$ sudo subscription-manager repos --enable rhel-7-server-optional-rpms
+
+Install *LibreOffice*
+
+  [demo-user@iotlab ~]$ sudo yum groupinstall "Office Suite and Productivity"
 
 *Now you are ready to proceed with the Labs! Have fun!*
