@@ -37,8 +37,8 @@ image::images/image1.png[]
 * In the shell perform the following steps
 
  [demo-user@localhost ~]$ cd
- [demo-user@localhost ~]$ unzip jboss-fuse-full-6.2.1.redhat-084.zip
- [demo-user@localhost ~]$ ln -s jboss-fuse-6.2.1.redhat-084 fuse
+ [demo-user@localhost ~]$ unzip jboss-fuse-karaf-6.3.0.redhat-187.zip
+ [demo-user@localhost ~]$ ln -s jboss-fuse-6.3.0.redhat-187 fuse
 
 * Close the shell
 
@@ -48,7 +48,7 @@ These simple steps complete the installation of Red Hat JBoss Fuse.
 
 == Lab 2 - Starting JBoss Fuse
 We will start the JBoss Fuse server and will leave it running in the background. Deployment
-to the server will be done "hot", which is definately not a best-practice, but
+to the server will be done "hot", which is definitely not a best-practice, but
 for the sake of this lab, it's absolutely sufficient.
 
 To start JBoss Fuse, please follow these simple steps
