@@ -1,8 +1,8 @@
-vo D= IoT Summit Lab 2016 - Building a VM
+= IoT Summit Lab 2016 - Building a VM
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
-:Date:      17.05.2016
+:Date:      03.3.2016
 
 :toc: macro
 
@@ -12,15 +12,10 @@ toc::[]
 This document is intended for those people who would like to perform the
 IoT-Lab, as described in this repository.
 
-The instructions are based on Red Hat Enterprise Linux V7.2 (RHEL) but can easily be
-re-done on other Operatingsystems, if you have the basic skills to install
-software, etc.
-
-In the course of this document, we will assume that you will run RHEL in a VM, but
-bare metal deployments will work as well.
+The instructions are based on Red Hat Enterprise Linux 7.3 (RHEL) and can be run on a VM or natively on hardware system.
 
 == Pre-Requisite
-You will need to install a RHEL V7.2 with
+You will need to install a RHEL V7.3 with
 
  * 2 CPUs
  * 4 GB RAM ( more is always good )
