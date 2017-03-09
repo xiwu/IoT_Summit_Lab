@@ -49,34 +49,30 @@ After completing the install precedure, register and upgrade your RHEL installat
 ```
 == Provisioning the Gateway
 === Pre-Requisite
-- *Host System*: Ansible
-- *Gateway*: Download JBOSS Fuse 6.3.0 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
+-Install git
+  [user@localhost ~]$ sudo yum install git
+-Install Ansible
+  [user@localhost ~]$ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  [user@localhost ~]$ sudo yum install ansible
+  
+-Download JBOSS Fuse 6.3.0 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
 
 image:images/download_fuse.png[]
 
-=== Step 1 - Prepare the system using Ansible
-
-We'll use the Ansible automation tool to install required software on the Gateway.
-
- * Open a terminal and enter the following commands:
-  
+-Download the provisioning script  
   [user@localhost ~]$ git clone -b Summit-2017-IshuChanges-Host https://github.com/RedHatDemoCentral/IoT_Summit_Lab.git
- 
- * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (Ansible uses ssh to communicate with remote system). You can learn how to setup Ansible https://github.com/redhat-iot/Virtual_IoT_Gateway/tree/Virtual-Lab-1-Host/Ansible[here].
-
-_Note: For the Gateway, we're using username = 'demo-user' and password = 'change12_me'._
 
  * Update the Ansible playbook BuildGW file [Virtual-IoT-Gateway/Ansible/BuildGW] for the username for your gateway: *set_fact: user='user name'*
+_Note: For the lab, we're using username = 'demo-user' and password = 'change12_me'._
 
  * Launch the Ansible playbook by entering the following commands:
   
   [user@localhost ~]$ cd Virtual_IoT_Gateway/Ansible
-  [user@localhost ~]$ ansible-playbook BuildGW
+  [user@localhost ~]$ ansible-playbook BuildGW --ask-become-pass
   
 *Let the Ansible run through the tasks in the playbook. Once Ansible is finished, we're ready to start work directly on the Gateway*
 
-
-== Additional Installations
+_Note: If you want to provision the Gateway remotely, you will need to update the host file [Ansible/host] with IP address of the Gateway and place your public key on the Gateway https://github.com/redhat-iot/Virtual_IoT_Gateway/tree/Virtual-Lab-1-Host/Ansible[see details]_
 
 
 *Now you are ready to proceed with the Labs! Have fun!*
