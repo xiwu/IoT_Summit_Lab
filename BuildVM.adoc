@@ -1,8 +1,8 @@
-= IoT Summit Lab 2016 - Building a VM
+= IoT Summit Lab 2017 - Building a VM
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
-:Date:      03.3.2016
+:Date:      03.3.2017
 
 :toc: macro
 
@@ -15,11 +15,11 @@ IoT-Lab, as described in this repository.
 The instructions are based on Red Hat Enterprise Linux 7.3 (RHEL) running on a VM or a physical hardware.
 
 == Pre-Requisite
-You will need to install a RHEL V7.3 with
+You will need to install a RHEL V7.3 with:
 
  * 2 CPUs
  * 4 GB RAM ( more is always good )
- * 20GB Storage with
+ * 15 GB Storage
 
 During the installation please select to install the server with GUI.
 
@@ -47,6 +47,33 @@ After completing the install precedure, register and upgrade your RHEL installat
 [demo-user@iotlab Desktop]$ sudo yum upgrade
 
 ```
+== Provisioning the Gateway
+=== Pre-Requisite
+- *Host System*: Ansible
+- *Gateway*: Download JBOSS Fuse 6.3.0 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
+
+image:images/download_fuse.png[]
+
+=== Step 1 - Prepare the system using Ansible
+
+We'll use the Ansible automation tool to install required software on the Gateway.
+
+ * Open a terminal and enter the following commands:
+  
+  [user@localhost ~]$ git clone -b Virtual-Lab-1-Host https://github.com/RedHat-IoT/Virtual_IoT_Gateway.git
+ 
+ * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (Ansible uses ssh to communicate with remote system). You can learn how to setup Ansible https://github.com/redhat-iot/Virtual_IoT_Gateway/tree/Virtual-Lab-1-Host/Ansible[here].
+
+_Note: For the Gateway, we're using username = 'demo-user' and password = 'change12_me'._
+
+ * Update the Ansible playbook BuildGW file [Virtual-IoT-Gateway/Ansible/BuildGW] for the username for your gateway: *set_fact: user='user name'*
+
+ * Launch the Ansible playbook by entering the following commands:
+  
+  [user@localhost ~]$ cd Virtual_IoT_Gateway/Ansible
+  [user@localhost ~]$ ansible-playbook BuildGW
+  
+*Let the Ansible run through the tasks in the playbook. Once Ansible is finished, we're ready to start work directly on the Gateway*
 
 
 == Additional Installations
