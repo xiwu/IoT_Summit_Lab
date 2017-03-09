@@ -64,7 +64,7 @@ image:images/download_fuse.png[]
 
 -Download the provisioning script
 
-  [user@localhost ~]$ git clone -b Summit-2017-IshuChanges-Host https://github.com/RedHatDemoCentral/IoT_Summit_Lab.git
+  [user@localhost ~]$ git clone -b Summit-2017-IshuChanges https://github.com/RedHatDemoCentral/IoT_Summit_Lab.git
 
  * Update the Ansible playbook BuildGW file [Virtual-IoT-Gateway/Ansible/BuildGW] for the username for your gateway: *set_fact: user='user name'*
  
