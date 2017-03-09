@@ -60,7 +60,7 @@ We'll use the Ansible automation tool to install required software on the Gatewa
 
  * Open a terminal and enter the following commands:
   
-  [user@localhost ~]$ git clone -b Virtual-Lab-1-Host https://github.com/RedHat-IoT/Virtual_IoT_Gateway.git
+  [user@localhost ~]$ git clone -b Summit-2017-IshuChanges-Host https://github.com/RedHatDemoCentral/IoT_Summit_Lab.git
  
  * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (Ansible uses ssh to communicate with remote system). You can learn how to setup Ansible https://github.com/redhat-iot/Virtual_IoT_Gateway/tree/Virtual-Lab-1-Host/Ansible[here].
 
