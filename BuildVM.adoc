@@ -50,8 +50,11 @@ After completing the install precedure, register and upgrade your RHEL installat
 == Provisioning the Gateway
 === Pre-Requisite
 -Install git
+
   [user@localhost ~]$ sudo yum install git
+
 -Install Ansible
+
   [user@localhost ~]$ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   [user@localhost ~]$ sudo yum install ansible
   
