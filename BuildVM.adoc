@@ -79,5 +79,56 @@ _Note: For the lab, we're using username = 'demo-user' and password = 'change12_
 
 _Note: If you want to provision the Gateway remotely, you will need to update the host file [Ansible/host] with IP address of the Gateway and place your public key on the Gateway https://github.com/redhat-iot/Virtual_IoT_Gateway/tree/Virtual-Lab-1-Host/Ansible[see details]_
 
+=== Red Hat JBoss Developer Studio
+Red Hat JBoss Developer Studio ( JBDS ) in the Eclipse based tooling
+for all JBoss products. It's capabilities can be installed onto an
+existing Eclipse or already bundled.
+
+For this setup, we will download JBDS with the required Integration Stack from http://tools.jboss.org/downloads/devstudio_is/neon/10.0.0.GA.html[tools.jboss.org],
+but please make sure to download the V10
+
+image:images/download_jbds.png[]
+
+
+Once the download completed, you can run the installer for JBDS via.
+
+ [demo-user@iotlab ~]$ java -jar Downloads/devstudio-integration-stack-10.0.0.GA-standalone-installer.jar
+
+For simplicity, accept all defaults. When arriving at "Step 6 of 10" for the
+selection of additional features, please select to also install the "JBoss Fuse Development"
+
+image:images/fuse_tools.png[]
+
+Finally, let the installer add an icon onto the desktop
+
+image:images/install_jbds.png[]
+
+If you want to take a first look at JBDS, let the installer start it, once
+the installation completed
+
+image:images/start_jbds.png[]
+
+You can, again, accept the defaults for the proposed Eclipse 'workspace'.
+
+It is up to you, if you want to let Red Hat receive usage statistics or not.
+
+After the successful installation of JBDS, you can import the source
+projects for the labs, to do so, perform the following steps
+
+ * Open the 'Import' wizard of JBDS
+
+image:images/import_1.png[]
+
+ * Select 'Existing Maven Project' as import source
+
+image:images/import_2.png[]
+
+ * Select the '/home/demo-user/IoT_Summit_Lab/RoutingService' directory
+
+image:images/import_3.png[]
+
+ * Have patience or a cup of coffee, as JBDS downloads a lot of Maven dependencies for you.
+
+ * Re-Do the same steps for the project in '/home/demo-user/IoT_Summit_Lab/BusinessRulesService'
 
 *Now you are ready to proceed with the Labs! Have fun!*
