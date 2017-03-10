@@ -92,7 +92,7 @@ image:images/JBDS10.3.png[]
 
 Once the download completed, you can run the installer for JBDS via.
 
- [demo-user@iotlab ~]$ java -jar Downloads/devstudio-integration-stack-10.0.0.GA-standalone-installer.jar
+ [demo-user@iotlab ~]$ java -jar Downloads/devstudio-10.3.0.GA-installer-standalone.jar
 
 For simplicity, accept all defaults. When arriving at "Step 6 of 10" for the
 selection of additional features, please select to also install the "JBoss Fuse Development"
