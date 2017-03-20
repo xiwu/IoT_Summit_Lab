@@ -1,0 +1,32 @@
+- name: Install JBoss BRMS and deploy initial rules
+  hosts: local
+  connection: local
+  become: yes
+  tasks:
+      - name: Set user name
+        set_fact: user='psteiner'
+
+      - name: Build DataSet Class
+        command: mvn clean install
+        args:
+           chdir: ../DataSet
+
+      - name: Install JBoss EAP
+        unarchive: src=/home/{{user}}/Downloads/jboss-eap-7.0.0.zip dest=/home/{{user}} copy=no
+
+      - name: Install JBoss EAP Patch
+        shell: /home/{{user}}/jboss-eap-7.0/bin/jboss-cli.sh "patch apply /home/{{user}}/Downloads/jboss-eap-7.0.4-patch.zip"
+
+      - name: Install JBoss BRMS
+        unarchive: src=/home/{{user}}/Downloads/jboss-brms-6.4.0.GA-deployable-eap7.x.zip dest=/home/{{user}} copy=no
+
+      - name: Create JBoss BRMS user
+        shell: /home/{{user}}/jboss-eap-7.0/bin/add-user.sh -a -r ApplicationRealm -u {{user}} -p change12_me! -ro analyst,admin,appraiser,broker,manager,kie-server,rest-all --silent
+
+      - name: Copy JBoss BRMS project
+        command: cp -R ../config/niogit /home/{{user}}/.niogit 
+
+      - name: Make {{user}} the owner for all files in {{user}} directory
+        shell: chown {{user}}:{{user}} -R * chdir=/home/{{user}}
+        become: yes
+        become_method: sudo
