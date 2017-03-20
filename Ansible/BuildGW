@@ -1,0 +1,41 @@
+- name: Configure a RHEL based Intelligent IoT gateway
+  hosts: local
+  connection: local
+  become: yes
+  tasks:
+      - name: Set user name
+        set_fact: user='demo-user'
+
+      - name: Enable Repo (1/2)
+        shell: subscription-manager repos --enable=rhel-7-server-extras-rpms
+
+      - name: Enable Repo (2/2)
+        shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
+
+      - name: Install various pre-requisites
+        yum: name=wget,maven,libreoffice
+            state=present
+
+#      - name: Clone Gateway code from github
+#        git: repo=https://github.com/redhatdemocentral/IoT_Summit_Lab.git
+#             dest=/home/{{user}}/IoT_Summit_Lab
+#             version=Summit-2017-IshuChanges
+        
+      - name: Make {{user}} the owner for all files in in IoT-Summit_Lab directory
+        shell: chown {{user}}:{{user}} -R * chdir=/home/{{user}}/IoT_Summit_Lab
+        become: yes
+        become_method: sudo
+        
+      - name: Upload JBoss Fuse
+        shell: cp /home/{{user}}/Downloads/jboss-fuse-karaf-6.3.0.redhat-187.zip /home/{{user}}/
+        
+      - name: Install JBoss Fuse
+        unarchive: src=/home/{{user}}/jboss-fuse-karaf-6.3.0.redhat-187.zip dest=/home/{{user}} copy=no
+        
+      - name: Create link for fuse
+        shell: ln -s jboss-fuse-6.3.0.redhat-187 fuse chdir=/home/{{user}}
+        
+      - name: Make {{user}} the owner for all files in {{user}} directory
+        shell: chown {{user}}:{{user}} -R * chdir=/home/{{user}}
+        become: yes
+        become_method: sudo
