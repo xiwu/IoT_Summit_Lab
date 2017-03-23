@@ -120,8 +120,8 @@ In the properties of the newly created `Bean`, please define the following value
  * *Method* to `enhanceMessage`
  * *ID* to `myHelper`
  * *Ref* to `myHelper`
- 
- You can safely ignore the other properties, like *Multi Parameter* and others.
+
+You can safely ignore the other properties, like *Multi Parameter* and others.
 
 image:images/defineBean.png[]
 
@@ -186,6 +186,8 @@ Last thing to do is to configure the sending node, to do this please select
 the `direct:to` node and change the property `Uri` to `activemqGateway:queue:message.to.rules`  as shown in the image below.
 
 image:images/configureSend.png[]
+
+Here again, it's OK to ignore the other parameters, like *Pattern*, as they are not needed for our example.
 
 ==== One more thing
 To show the flexibility of building Camel routes, we will introduce one more
