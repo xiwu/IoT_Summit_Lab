@@ -183,9 +183,11 @@ image:images/wiringDone.png[]
 
 ==== Adding the final send to the flow
 Last thing to do is to configure the sending node, to do this please select
-the `direct:to` node and change the property `Uri` to `activemqGateway:queue:message.to.rules`  as shown in the image below.
+the `direct:to` node and change the property `Uri` to `activemqGateway:queue:message.to.rules`  as shown in the image below. 
 
 image:images/configureSend.png[]
+
+Here again, it's OK to ignore the other parameters, like *Pattern*, as they are not needed for our example.
 
 ==== One more thing
 To show the flexibility of building Camel routes, we will introduce one more
