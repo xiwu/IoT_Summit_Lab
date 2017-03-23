@@ -3,6 +3,8 @@ package com.redhat.demo.businessRules;
 import org.kie.api.KieBase;
 import org.kie.api.runtime.KieSession;
 
+import com.redhat.demo.iot.utils.DataSet;
+
 public class BRMSRunner {
 	
 	//The releaseId uses maven GAV (groupId, artifactId and version) to specify a kjar
