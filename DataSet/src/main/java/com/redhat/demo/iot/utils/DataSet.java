@@ -1,9 +1,15 @@
 package com.redhat.demo.iot.utils;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+
+import java.io.StringWriter;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import javax.xml.bind.Marshaller;
 
 @XmlRootElement(name = "dataSet")
 @XmlType(propOrder = { "timestamp", "deviceType", "deviceID", "payload","required","average", "errorCode", "errorMessage" })
@@ -37,6 +43,17 @@ public class DataSet {
 		this.average	= average;
 	}
 
+	public String asString( ) throws JAXBException {
+		StringWriter sw = new StringWriter();
+		
+		JAXBContext context = JAXBContext.newInstance("com.redhat.demo.businessRules");
+	    Marshaller marshaller = context.createMarshaller();
+	    marshaller.marshal(this, sw );
+	    
+	    return sw.toString();
+	    
+	}
+	
 	/**
 	 * @return the required
 	 */
