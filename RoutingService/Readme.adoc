@@ -98,7 +98,7 @@ Let's analyze this long string:
  and has two more parts, which we subscribe to via wildcards
  * *userName=admin&amp;password=change12_me* defines the username and password which
  this receiver uses to authenticate to the MQTT Broker
- * *&amp;reconnectBackOffMultiplier=1* defines the Exponential backoff be used between reconnect attempts. Set to 1 to disable exponential backoff.
+ * *reconnectBackOffMultiplier=1* defines the Exponential backoff be used between reconnect attempts. Set to 1 to disable exponential backoff.
 
 ==== Changing the CSV message to a Java Object
 In this step we will introduce the capabilities needed to
