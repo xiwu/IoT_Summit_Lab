@@ -183,7 +183,7 @@ image:images/wiringDone.png[]
 
 ==== Adding the final send to the flow
 Last thing to do is to configure the sending node, to do this please select
-the `direct:to` node and change the property `Uri` to `activemqGateway:queue:message.to.rules`  as shown in the image below.
+the `direct:to` node and change the property `Uri` to `activemqGateway:queue:message.to.rules`  as shown in the image below. 
 
 image:images/configureSend.png[]
 
