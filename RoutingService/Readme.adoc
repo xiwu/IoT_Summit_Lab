@@ -120,6 +120,8 @@ In the properties of the newly created `Bean`, please define the following value
  * *Method* to `enhanceMessage`
  * *ID* to `myHelper`
  * *Ref* to `myHelper`
+ 
+ You can safely ignore the other properties, like *Multi Parameter* and others.
 
 image:images/defineBean.png[]
 
