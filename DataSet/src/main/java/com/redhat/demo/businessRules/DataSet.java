@@ -1,4 +1,4 @@
-package com.redhat.demo.iot.utils;
+package com.redhat.demo.businessRules;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
