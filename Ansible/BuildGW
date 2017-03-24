@@ -4,16 +4,10 @@
   become: yes
   tasks:
       - name: Set user name
-        set_fact: user='demo-user'
-
-      - name: Enable Repo (1/2)
-        shell: subscription-manager repos --enable=rhel-7-server-extras-rpms
-
-      - name: Enable Repo (2/2)
-        shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
+        set_fact: user='psteiner'
 
       - name: Install various pre-requisites
-        yum: name=wget,maven,git,java-1.8.0-openjdk-devel
+        yum: name=wget,maven,git,java-1.8.0-openjdk-devel,unzip
             state=present
 
       - name: Make {{user}} the owner for all files in in IoT-Summit_Lab directory
@@ -21,19 +15,11 @@
         become: yes
         become_method: sudo
 
-#      - name: Upload JBoss Fuse
-#        shell: cp /home/{{user}}/Downloads/jboss-fuse-karaf-6.3.0.redhat-187.zip /home/{{user}}/
-
       - name: Install JBoss Fuse
         unarchive: src=/home/{{user}}/Downloads/jboss-fuse-karaf-6.3.0.redhat-187.zip dest=/home/{{user}} copy=no
 
       - name: Create link for fuse
         shell: ln -s jboss-fuse-6.3.0.redhat-187 fuse chdir=/home/{{user}}
-
-      - name: Build DataSet Class
-        command: mvn clean install
-        args:
-           chdir: ../DataSet
 
       - name: Install JBoss EAP
         unarchive: src=/home/{{user}}/Downloads/jboss-eap-7.0.0.zip dest=/home/{{user}} copy=no
@@ -45,7 +31,7 @@
         unarchive: src=/home/{{user}}/Downloads/jboss-brms-6.4.0.GA-deployable-eap7.x.zip dest=/home/{{user}} copy=no
 
       - name: Create JBoss BRMS user
-        shell: /home/{{user}}/jboss-eap-7.0/bin/add-user.sh -a -r ApplicationRealm -u {{user}} -p change12_me! -ro analyst,admin,appraiser,broker,manager,kie-server,rest-all --silent
+        shell: /home/{{user}}/jboss-eap-7.0/bin/add-user.sh -a -r ApplicationRealm -u {{user}} -p change12_me -ro analyst,admin,appraiser,broker,manager,kie-server,rest-all --silent
 
       - name: Copy JBoss BRMS project
         command: cp -R ../config/niogit /home/{{user}}/.niogit
