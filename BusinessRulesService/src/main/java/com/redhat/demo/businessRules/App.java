@@ -10,8 +10,6 @@ import javax.xml.bind.Unmarshaller;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 
-import com.redhat.demo.iot.utils.DataSet;
-
 public class App 
 {   	 
     public static void main( String[] args ) throws InterruptedException, JMSException, JAXBException, MqttPersistenceException, MqttException
