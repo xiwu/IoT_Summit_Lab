@@ -46,7 +46,7 @@
         shell: /home/{{user}}/jboss-eap-7.0/bin/add-user.sh -a -r ApplicationRealm -u {{user}} -p change12_me -ro analyst,admin,appraiser,broker,manager,kie-server,rest-all --silent
 
       - name: Copy JBoss BRMS project
-        command: cp -R ../config/niogit /home/{{user}}/.niogit
+        command: cp -R ../config/niogit /home/{{user}}/jboss-eap-7.0/.niogit
 
       - name: Make {{user}} the owner for all files in {{user}} directory
         shell: chown {{user}}:{{user}} -R * chdir=/home/{{user}}
