@@ -62,6 +62,20 @@ Navigate to `Authoring` and make sure you are seeing the right project.
 
 image::images/selectRepo.png[]
 
+When opening this view the first time, you will have to "open" the project to
+be able to see the included artifacts, like the prepared Decision Table.
+
+image::images/openRepo1.png[]
+
+Continue drilling into the repository, untill you see the "Guided Decision Table"
+
+image:images/openRepo2.png[]
+
+image:images/openRepo3.png[]
+
+image:images/openRepo4.png[]
+
+
 In the project open the section `Guided Decision Tables` and open the prepared
 frame.
 
