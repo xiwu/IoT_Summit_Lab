@@ -20,8 +20,6 @@
       <maven.compiler.source>1.6</maven.compiler.source>
       
       <version.org.kie>6.5.0.Final-redhat-5</version.org.kie>
-      
-      <version.org.infinispan>6.4.0.Final-redhat-4</version.org.infinispan>
   </properties>
   
    <repositories>
@@ -47,7 +45,7 @@
 	        	<enabled>true</enabled>
 	        	<updatePolicy>always</updatePolicy>
 	      	</releases>
-	        <url>file://${user.home}/.m2/repository</url>
+	        <url>file:///home/psteiner/.m2/repository</url>
 	     </repository>
  	</repositories>
   
