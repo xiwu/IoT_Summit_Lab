@@ -24,8 +24,8 @@
       - name: Install JBoss EAP
         unarchive: src=/home/{{user}}/Downloads/jboss-eap-7.0.0.zip dest=/home/{{user}} copy=no
 
-#      - name: Install JBoss EAP Patch
-#        shell: /home/{{user}}/jboss-eap-7.0/bin/jboss-cli.sh "patch apply /home/{{user}}/Downloads/jboss-eap-7.0.4-patch.zip"
+      - name: Install JBoss EAP Patch
+        shell: /home/{{user}}/jboss-eap-7.0/bin/jboss-cli.sh "patch apply /home/{{user}}/Downloads/jboss-eap-7.0.4-patch.zip"
 
       - name: Copy JBoss EAP Config for start as service
         shell: cp ../config/jboss-eap.conf /etc/default
