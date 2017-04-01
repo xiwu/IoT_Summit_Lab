@@ -11,7 +11,7 @@ toc::[]
 == Content
 
 This repository contains the material needed to build and run the Business Rules Service
-for the 2016 Red Hat Summit IoT Lab
+for the 2017 Red Hat Summit IoT Lab
 
 == What does this Module do?
 This Module validates data against predefined business rules and marks them according to
@@ -57,6 +57,8 @@ In our case, we will implement the Decision table via a web frontent, provided b
 To access the rules, you will have to open a browser and open the following URL
 
 image::images/openBusinessCentral.png[]
+
+Login: demo-user, Password: change12_me
 
 Navigate to `Authoring` and make sure you are seeing the right project.
 
