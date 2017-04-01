@@ -128,25 +128,30 @@ Once the download completed, you can run the installer for JBDS via.
 
  [demo-user@iotlab ~]$ java -jar Downloads/devstudio-10.3.0.GA-installer-standalone.jar
 
-For simplicity, accept all defaults. When arriving at "Step 6 of 10" for the
-selection of additional features, please select to also install the "JBoss Fuse Development"
 
-image:images/fuse_tools.png[]
+For simplicity, accept all defaults and let the installer add an icon onto the desktop
 
-Finally, let the installer add an icon onto the desktop
-
-image:images/install_jbds.png[]
+image:images/install_jbds-new.png[]
 
 If you want to take a first look at JBDS, let the installer start it, once
 the installation completed
 
-image:images/start_jbds.png[]
+image:images/start_jbds-new.png[]
 
 You can, again, accept the defaults for the proposed Eclipse 'workspace'.
 
 It is up to you, if you want to let Red Hat receive usage statistics or not.
 
-After the successful installation of JBDS, you can import the source
+Once JBDS has fully started and the 'workspace' is shown, you will have to
+switch to the panel to install additional software into JBDS
+
+image:images/jbds_software_updates.png[]
+
+Select *JBoss Fuse Development* for installation.
+
+image:images/jbds_install_tooling.png[]
+
+After installing the Tooling and restarting JBDS, you can import the source
 projects for the labs, to do so, perform the following steps
 
  * Open the 'Import' wizard of JBDS
