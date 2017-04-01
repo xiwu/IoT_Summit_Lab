@@ -67,7 +67,7 @@ image::images/selectRepo.png[]
 When opening this view the first time, you will have to "open" the project to
 be able to see the included artifacts, like the prepared Decision Table.
 
-image::images/openRepo1.png[]
+image::images/openRepo1-new.png[]
 
 Continue drilling into the repository, untill you see the "Guided Decision Table"
 
