@@ -56,7 +56,7 @@ After completing the install precedure, register and upgrade your RHEL installat
 
 ==== Install Ansible
 
-  [user@localhost ~]$ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  [user@localhost ~]$ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   [user@localhost ~]$ sudo yum install ansible
 
 ==== Download JBOSS Fuse 6.3.0
@@ -76,9 +76,15 @@ into the `Downloads` folder
  * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=49331[JBoss EAP V7.0.4 Patch]
  * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=48291[Red Hat JBoss BRMS 6.4.0 Deployable for EAP 7]
 
+==== Clone the project
+
+Download the project code from github
+
+ [user@localhost ~]$ git clone https://github.com/PatrickSteiner/IoT_Summit_Lab.git
+
 ==== Configure the Deployment Script
 
-To customize the installation script to your needs, please update the file `Ansible/BuildGW`
+To customize the installation script to your needs, please update the file `IoT_Summit_Lab/Ansible/BuildGW`
 and change the following value to the name of the user, who should be running the lab:
 
  set_fact: user='user name'
@@ -92,7 +98,7 @@ running the lab.
 
 ====== Launch the Ansible playbook by entering the following commands:
 
-  [user@localhost ~]$ cd Virtual_IoT_Gateway/Ansible
+  [user@localhost ~]$ cd IoT_Summit_Lab/Ansible
   [user@localhost ~]$ ansible-playbook BuildGW --ask-become-pass
 
 Let the Ansible run through the tasks in the playbook. Once Ansible is finished, we're ready to start work directly on the Gateway
