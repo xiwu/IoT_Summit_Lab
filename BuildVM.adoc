@@ -56,7 +56,7 @@ After completing the install precedure, register and upgrade your RHEL installat
 
 ==== Install Ansible
 
-  [user@localhost ~]$ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  [user@localhost ~]$ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   [user@localhost ~]$ sudo yum install ansible
 
 ==== Download JBOSS Fuse 6.3.0
@@ -76,9 +76,15 @@ into the `Downloads` folder
  * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=49331[JBoss EAP V7.0.4 Patch]
  * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=48291[Red Hat JBoss BRMS 6.4.0 Deployable for EAP 7]
 
+==== Clone the project
+
+Download the project code from github
+
+ [user@localhost ~]$ git clone https://github.com/PatrickSteiner/IoT_Summit_Lab.git
+
 ==== Configure the Deployment Script
 
-To customize the installation script to your needs, please update the file `Ansible/BuildGW`
+To customize the installation script to your needs, please update the file `IoT_Summit_Lab/Ansible/BuildGW`
 and change the following value to the name of the user, who should be running the lab:
 
  set_fact: user='user name'
@@ -92,7 +98,7 @@ running the lab.
 
 ====== Launch the Ansible playbook by entering the following commands:
 
-  [user@localhost ~]$ cd Virtual_IoT_Gateway/Ansible
+  [user@localhost ~]$ cd IoT_Summit_Lab/Ansible
   [user@localhost ~]$ ansible-playbook BuildGW --ask-become-pass
 
 Let the Ansible run through the tasks in the playbook. Once Ansible is finished, we're ready to start work directly on the Gateway
@@ -122,25 +128,30 @@ Once the download completed, you can run the installer for JBDS via.
 
  [demo-user@iotlab ~]$ java -jar Downloads/devstudio-10.3.0.GA-installer-standalone.jar
 
-For simplicity, accept all defaults. When arriving at "Step 6 of 10" for the
-selection of additional features, please select to also install the "JBoss Fuse Development"
 
-image:images/fuse_tools.png[]
+For simplicity, accept all defaults and let the installer add an icon onto the desktop
 
-Finally, let the installer add an icon onto the desktop
-
-image:images/install_jbds.png[]
+image:images/install_jbds-new.png[]
 
 If you want to take a first look at JBDS, let the installer start it, once
 the installation completed
 
-image:images/start_jbds.png[]
+image:images/start_jbds-new.png[]
 
 You can, again, accept the defaults for the proposed Eclipse 'workspace'.
 
 It is up to you, if you want to let Red Hat receive usage statistics or not.
 
-After the successful installation of JBDS, you can import the source
+Once JBDS has fully started and the 'workspace' is shown, you will have to
+switch to the panel to install additional software into JBDS
+
+image:images/jbds_software_updates.png[]
+
+Select *JBoss Fuse Development* for installation.
+
+image:images/jbds_install_tooling.png[]
+
+After installing the Tooling and restarting JBDS, you can import the source
 projects for the labs, to do so, perform the following steps
 
  * Open the 'Import' wizard of JBDS

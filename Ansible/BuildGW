@@ -6,6 +6,9 @@
       - name: Set user name
         set_fact: user='demo-user'
 
+      - name: Enable Repo (1/1)
+        shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
+
       - name: Install various pre-requisites
         yum: name=wget,maven,git,java-1.8.0-openjdk-devel,unzip
             state=present
