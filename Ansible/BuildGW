@@ -10,6 +10,12 @@
         yum: name=wget,maven,git,java-1.8.0-openjdk-devel,unzip
             state=present
 
+      - name: Build DataSet
+        shell mvn clean install chdir=/home/{{user}}/IoT_Summit_Lab/DataSet/
+
+      - name: Move DataSet from root's .m2 to the one of {{user}}
+        shell: cp -R /root/.m2/repository/com/redhat/demo/businessRules /home/{{user}}/.m2/repository/com/redhat/demo/
+
       - name: Make {{user}} the owner for all files in in IoT-Summit_Lab directory
         shell: chown {{user}}:{{user}} -R * chdir=/home/{{user}}/IoT_Summit_Lab
         become: yes
@@ -55,4 +61,3 @@
 
       - name: Start new jboss-eap-rhel.sh service
         shell: service jboss-eap-rhel start
-
