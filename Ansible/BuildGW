@@ -64,3 +64,30 @@
 
       - name: Start new jboss-eap-rhel.sh service
         shell: service jboss-eap-rhel start
+
+      - name: Make JBoss EAP start when system boots
+        shell: chkconfig jboss-eap-rhel.sh on
+
+      - name: Verify if JBoss EAP is and running
+        uri:
+           url: "http://127.0.0.1:8080/business-central"
+           status_code: 200
+        register: result
+        until: result.status == 200
+        retries: 60
+        delay: 60
+
+      - name: Define a few variables for kjar deployment
+        set_fact:
+           SERVER='localhost'
+           PORT='8080'
+           PASSWORD='change12_me'
+           REPOSITORY_NAME='summit'
+           PROJECT_NAME='rules'
+
+      - name: Define request
+        set_fact:
+           REQUEST='{{SERVER}}:{{PORT}}/business-central/rest/repositories/{{REPOSITORY_NAME}}/projects/{{PROJECT_NAME}}/maven/deploy/'
+
+      - name: Deploy BusinessRules kjar
+        shell: 'curl -v -H "Content-Type: application/xml" -u {{user}}:{{PASSWORD}} -X POST {{REQUEST}}'
