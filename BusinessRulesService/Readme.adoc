@@ -111,6 +111,24 @@ Proceed the same way to complete the rules as shown in the following image
 
 image:images/allRules.png[]
 
+When you have entered your rules, you have so click `safe`. You can add a check-in
+comments, but that is not required. Click `safe` again ...
+
+image:images/safe_rules.png[]
+
+=== Authoring rules in JBoss BRMS
+Before we can use the rules, we need to make them available, aka *deploy* them.
+
+To do so, please click `Open Project Editor`
+
+image:images/open_project_editor.png[]
+
+Select `Build->Build
+
+image:images/build_deploy.png[]
+
+
+
 == Building and Running the *Business Rules Service*
 Now that we have added a few rules to our decision table, we only need to build
 a new version of the service and start it.
