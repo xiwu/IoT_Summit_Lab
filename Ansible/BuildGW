@@ -65,6 +65,9 @@
       - name: Start new jboss-eap-rhel.sh service
         shell: service jboss-eap-rhel start
 
+      - name: Make JBoss EAP start when system boots
+        shell: chkconfig jboss-eap-rhel.sh on
+
       - name: Verify if JBoss EAP is and running
         uri:
            url: "http://127.0.0.1:8080/business-central"
