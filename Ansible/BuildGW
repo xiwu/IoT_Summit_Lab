@@ -6,9 +6,6 @@
       - name: Set user name
         set_fact: user='demo-user'
 
-#      - name: Enable Repo (1/1)
-#        shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
-
       - name: Install various pre-requisites
         yum: name=wget,maven,git,java-1.8.0-openjdk-devel,unzip
             state=present
@@ -16,8 +13,8 @@
       - name: Build DataSet
         shell: mvn clean install chdir=/home/{{user}}/IoT_Summit_Lab/DataSet/
 
-      - name: Move DataSet from root .m2 to the one of {{user}} 
-        shell: cp -R /root/.m2/repository/com/redhat /home/{{user}}/.m2/repository/com/
+      - name: Move DataSet from root .m2 to the one of {{user}}
+        shell: cp -R /root/.m2 /home/{{user}}/
 
       - name: Make {{user}} the owner for all files in in IoT-Summit_Lab directory
         shell: chown {{user}}:{{user}} -R * chdir=/home/{{user}}/.m2
