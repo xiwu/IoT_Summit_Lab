@@ -74,7 +74,7 @@ and it's pre-requisites from the Red Hat Customer portal and place all three fil
 into the `Downloads` folder
 
  * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=43891[JBoss EAP V7.0.0]
- * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=49331[JBoss EAP V7.0.4 Patch]
+ * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=50411[JBoss EAP V7.0.5 Patch]
  * https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=48291[Red Hat JBoss BRMS 6.4.0 Deployable for EAP 7]
 
 ==== Clone the project
