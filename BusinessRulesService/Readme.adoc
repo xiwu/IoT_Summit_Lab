@@ -111,8 +111,8 @@ Proceed the same way to complete the rules as shown in the following image
 
 image:images/allRules.png[]
 
-When you have entered your rules, you have so click `safe`. You can add a check-in
-comments, but that is not required. Click `safe` again ...
+When you have entered your rules, you have so click `Save`. You can add a check-in
+comments, but that is not required. Click `Save` again ...
 
 image:images/safe_rules.png[]
 
