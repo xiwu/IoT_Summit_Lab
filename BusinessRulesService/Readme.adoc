@@ -116,7 +116,6 @@ comments, but that is not required. Click `Save` again ...
 
 image:images/safe_rules.png[]
 
-=== Authoring rules in JBoss BRMS
 Before we can use the rules, we need to make them available, aka *deploy* them.
 
 To do so, please click `Open Project Editor`
