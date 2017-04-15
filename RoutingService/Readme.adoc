@@ -315,8 +315,3 @@ image:images/viewMessageList.png[]
  * Be Happy!
 
 image:images/messageContent.png[]
-
-
-== Flow 2 - Filter and Forward to Backend
-
-tbd
