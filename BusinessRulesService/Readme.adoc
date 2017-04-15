@@ -69,7 +69,7 @@ be able to see the included artifacts, like the prepared Decision Table.
 
 image::images/openRepo1-new.png[]
 
-Continue drilling into the repository, untill you see the "Guided Decision Table"
+Continue drilling into the repository, until you see the "Guided Decision Table"
 
 image:images/openRepo2.png[]
 
