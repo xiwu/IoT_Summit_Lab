@@ -109,12 +109,12 @@ image:images/firstRule.png[]
 
 Proceed the same way to complete the rules as shown in the following image
 
-image:images/allRules.png[]
+image:images/twoRule.png[]
 
 When you have entered your rules, you have so click `Save`. You can add a check-in
 comments, but that is not required. Click `Save` again ...
 
-image:images/safe_rules.png[]
+image:images/save_rules-1.png[]
 
 Before we can use the rules, we need to make them available, aka *deploy* them.
 
