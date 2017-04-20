@@ -43,7 +43,7 @@ Stop the running business rules service task by hitting CTRL-C in the right term
 
 Update the business rules through the BRMS business-central portal as described in Lab Part 3. The updated rules should have three rows as shown in the following image
 
-image:/images/allRules.png[]
+image:/Images/allRules.png[]
 
 Save and then Build & Deploy the updated business rules as described in Lab Part 3 
 
