@@ -10,14 +10,34 @@ toc::[]
 
 == Content
 
-In this lab we will use the Software Sensor from Lab 3 to create a stream of sensordata and will observe the effect our Business Rules from Lab 7 has on the data.
+In this lab we will use the Software Sensor from Lab 3 to create a stream of sensordata and will observe the effect our Business Rules from Lab 4 has on the data.
 
-Please follow the following steps
+In the Terminal session, run the following commands:
 
-Open a Terminal session or click on an open one
+ [demo-user@iotlab Desktop]$ cd
+ [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
+ [demo-user@iotlab IoT_Summit_Lab]$ ./runSensor.sh
 
-In the Terminal session, run the following commands
+You will see the sensordata being produced and received by the `Business Rules Service`, as
+documented in the following image.
 
+image:../images/sensordata.png[]
+
+ * You can use the number of messages in the various Queues to verify that the
+ `Business Rules Service` did filter the messages as expected. To do so,
+ go back to your browser windows and navigate to the page showing the Queues
+ and their content.
+
+image:images/queues_to_verify.png[]
+
+In this case, you can see that all produced 50 messages were place into and
+consumed from the queue `message.to.rules` but not a single one was placed
+into the queue `message.to.datacenter` by the `Business Rules Service`.
+
+The reason for this are our implemented rules, which considered these values
+to be in range and therefor not required for further processing.
+
+ * To get a different result you could update the rules 
 
 === Authoring rules in JBoss BRMS
 To add new rules to the given Decision-Table, please click the `Add row` button
