@@ -1,4 +1,4 @@
-= IoT Summit Lab 2016 - Software Sensor
+= IoT Summit Lab 2017 - Software Sensor
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
