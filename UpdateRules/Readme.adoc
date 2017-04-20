@@ -28,7 +28,7 @@ image:../images/sensordata.png[]
  go back to your browser windows and navigate to the page showing the Queues
  and their content.
 
-image:images/queues_to_verify.png[]
+image:../images/queues_to_verify.png[]
 
 In this case, you can see that all produced 50 messages were place into and
 consumed from the queue `message.to.rules` but not a single one was placed
@@ -37,43 +37,19 @@ into the queue `message.to.datacenter` by the `Business Rules Service`.
 The reason for this are our implemented rules, which considered these values
 to be in range and therefor not required for further processing.
 
- * To get a different result you could update the rules 
+* To get a different result you could update the rules 
 
-=== Authoring rules in JBoss BRMS
-To add new rules to the given Decision-Table, please click the `Add row` button
+Stop the running business rules service task by hitting CTRL-C in the right terminal session.
 
-image:images/addRow.png[]
+Update the business rules through the BRMS business-central portal as described in Lab Part 3. The updated rules should have three rows as shown in the following image
 
-This will create a new and empty row. You can add values into the cells by double-clicking them.
+image:../images/allRules.png[]
 
-Please fill in the data as shown
+Save and then Build & Deploy the updated business rules as described in Lab Part 3 
 
-image:images/firstRule.png[]
+== Building and Running the *Updated Business Rules Service*
 
-Proceed the same way to complete the rules as shown in the following image
-
-image:images/twoRule.png[]
-
-When you have entered your rules, you have so click `Save`. You can add a check-in
-comments, but that is not required. Click `Save` again ...
-
-image:images/save_rules-1.png[]
-
-Before we can use the rules, we need to make them available, aka *deploy* them.
-
-To do so, please click `Open Project Editor`
-
-image:images/open_project_editor.png[]
-
-Select `Build->Build & Deploy
-
-image:images/build_deploy.png[]
-
-
-
-== Building and Running the *Business Rules Service*
-
-You can use the same terminal again, to build and start the *Business Rules Service*
+You can use the same terminal again, to rebuild and start the *Updated Business Rules Service*
 
 To do so, enter the following commands in your terminal session
 
@@ -82,33 +58,15 @@ To do so, enter the following commands in your terminal session
  [demo-user@localhost IoT_Summit_Lab]$ ./runRulesService.sh
  
 
-== Sending a test messages
-As during the previous lab, we will try this service by sending a test message
-via the *Software Sensor* to our setup. The following should happen.
-
- 1. *Software Sensor* sends a message with a high value via MQTT
- 2. *Routing Service* will pick it up, transform the message and send it
- to an AMQP message queue.
- 3. *Business Rules Service* will take the transformed message from the queue
- and will put it in another AMQP message queue, but only if a business rule
- told him to.
+== Sending Sensor data
+Lets send the sensordata stream again to test the updated rules service. 
 
 To perform this test, perform the following steps
 
  * Open a new terminal windows
 
-image:images/openTerminal.png[]
-
- * Start the provided script *runHighSensor.sh*, which will send one message
-
  [demo-user@localhost Desktop]$ cd
  [demo-user@localhost ~]$ cd IoT_Summit_Lab/
- [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
+ [demo-user@localhost IoT_Summit_Lab]$ ./runSensor.sh
  
-
- * Another way to verify that the message was properly processed is to take a
- look at Red Hat JBoss Fuse console via 'http://localhost:8181', as in the previous
- lab. The count of messages enqueued and dequeued shoud now show that one message
- has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
-
-image:images/testResult.png[]
+Finally, check the number of messages per Queue in the JBoss Fuse Browser to validate that the new rules service is sending messages to message.to-datacenter queue.
