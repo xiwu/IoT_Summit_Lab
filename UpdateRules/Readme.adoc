@@ -1,8 +1,8 @@
-= IoT Summit Lab 2016 - Update Rules Service
+= IoT Summit Lab 2017 - Update Rules Service
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
-:Date:      23.01.2016
+:Date:      23.03.2017
 
 :toc: macro
 
