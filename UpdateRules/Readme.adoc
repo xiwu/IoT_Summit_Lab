@@ -1,0 +1,94 @@
+= IoT Summit Lab 2016 - Update Rules Service
+
+:Author:    Patrick Steiner
+:Email:     psteiner@redhat.com
+:Date:      23.01.2016
+
+:toc: macro
+
+toc::[]
+
+== Content
+
+In this lab we will use the Software Sensor from Lab 3 to create a stream of sensordata and will observe the effect our Business Rules from Lab 7 has on the data.
+
+Please follow the following steps
+
+Open a Terminal session or click on an open one
+
+In the Terminal session, run the following commands
+
+
+=== Authoring rules in JBoss BRMS
+To add new rules to the given Decision-Table, please click the `Add row` button
+
+image:images/addRow.png[]
+
+This will create a new and empty row. You can add values into the cells by double-clicking them.
+
+Please fill in the data as shown
+
+image:images/firstRule.png[]
+
+Proceed the same way to complete the rules as shown in the following image
+
+image:images/twoRule.png[]
+
+When you have entered your rules, you have so click `Save`. You can add a check-in
+comments, but that is not required. Click `Save` again ...
+
+image:images/save_rules-1.png[]
+
+Before we can use the rules, we need to make them available, aka *deploy* them.
+
+To do so, please click `Open Project Editor`
+
+image:images/open_project_editor.png[]
+
+Select `Build->Build & Deploy
+
+image:images/build_deploy.png[]
+
+
+
+== Building and Running the *Business Rules Service*
+
+You can use the same terminal again, to build and start the *Business Rules Service*
+
+To do so, enter the following commands in your terminal session
+
+ [demo-user@localhost IoT_Summit_Lab]$ cd
+ [demo-user@localhost ~]$ cd IoT_Summit_Lab/
+ [demo-user@localhost IoT_Summit_Lab]$ ./runRulesService.sh
+ 
+
+== Sending a test messages
+As during the previous lab, we will try this service by sending a test message
+via the *Software Sensor* to our setup. The following should happen.
+
+ 1. *Software Sensor* sends a message with a high value via MQTT
+ 2. *Routing Service* will pick it up, transform the message and send it
+ to an AMQP message queue.
+ 3. *Business Rules Service* will take the transformed message from the queue
+ and will put it in another AMQP message queue, but only if a business rule
+ told him to.
+
+To perform this test, perform the following steps
+
+ * Open a new terminal windows
+
+image:images/openTerminal.png[]
+
+ * Start the provided script *runHighSensor.sh*, which will send one message
+
+ [demo-user@localhost Desktop]$ cd
+ [demo-user@localhost ~]$ cd IoT_Summit_Lab/
+ [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
+ 
+
+ * Another way to verify that the message was properly processed is to take a
+ look at Red Hat JBoss Fuse console via 'http://localhost:8181', as in the previous
+ lab. The count of messages enqueued and dequeued shoud now show that one message
+ has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
+
+image:images/testResult.png[]
