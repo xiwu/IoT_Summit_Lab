@@ -1,4 +1,4 @@
-= IoT Summit Lab 2016 - Routing Service
+= IoT Summit Lab 2017 - Routing Service
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
