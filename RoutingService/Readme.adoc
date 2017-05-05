@@ -85,8 +85,6 @@ Change the `Uri` of the node to
 mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&subscribeTopicNames=iotdemo/#/#&userName=admin&password=change12_me&reconnectBackOffMultiplier=1
 ```
 
-image::images/setMQTTReceiver.png[]
-
 Let's analyze this long string:
 
  * *mqtt:* defines this node to be a MQTT connector
